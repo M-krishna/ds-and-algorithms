@@ -64,20 +64,21 @@ func (l *List) display() {
 	fmt.Println()
 }
 
-func (l *List) reverse() {
+// Iterative method
+func (l *List) IterativeReverse() {
 	var previousNode *Node = nil
 	var currentNode *Node = l.head
-	var following *Node = l.head
+	var nextNode *Node = nil
 
-	for currentNode != nil {
-		following = following.next
+	for currentNode != nil{
+		nextNode = currentNode.next
 		currentNode.next = previousNode
 		previousNode = currentNode
-		currentNode = following
+		currentNode = nextNode
 	}
-
-	fmt.Println(l.head)
+	l.head = previousNode
 }
+
 
 
 func main(){
@@ -106,6 +107,6 @@ func main(){
 
 	// Delete a specific node.
 	// items.deleteNode(&node1)
-	items.reverse()
+	items.IterativeReverse()
 	items.display()
 }
