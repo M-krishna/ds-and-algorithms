@@ -83,7 +83,9 @@ func (h *MinHeap) decreaseKey(index int, new_value float64) {
 func (h *MinHeap) extractMin() int {
 	if h.size == 1 {
 		h.size--
-		return h.dataArr[0]
+		data := h.dataArr[0]
+		h.dataArr = []int{}
+		return data
 	}
 
 	root := h.dataArr[0]
@@ -110,6 +112,12 @@ func (h *MinHeap) minHeapify(index int) {
 		h.swap(index, smallest)
 		h.minHeapify(smallest)
 	}
+}
+
+func (h *MinHeap) buildMinHeap() {
+	for index := ((h.size / 2) - 1); index >= 0; index-- {
+		h.minHeapify(index)
+	} 
 }
 
 
@@ -141,5 +149,8 @@ func main() {
 	fmt.Println(heap.dataArr, heap.size)
 
 	heap.deleteKey(2)
+	fmt.Println(heap.dataArr, heap.size)
+
+	heap.buildMinHeap()
 	fmt.Println(heap.dataArr, heap.size)
 }
