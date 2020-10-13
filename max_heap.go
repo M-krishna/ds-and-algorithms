@@ -18,6 +18,13 @@ func NewMaxHeap(capacity int) *MaxHeap {
 	}
 }
 
+func (h *MaxHeap) leaf(index int) bool {
+	if index >= (h.size) / 2 && index <= h.size {
+		return true
+	}
+	return false
+}
+
 func (h *MaxHeap) parent(index int) int {
 	return (index - 1) / 2
 }
@@ -75,6 +82,24 @@ func (h *MaxHeap) extractMax() int {
 	return root
 }
 
+func (h *MaxHeap) deleteKey(index int) error{
+	if h.size <= index {
+		return fmt.Errorf("Heap overflow!")
+	}
+
+	if h.leaf(index) {
+		h.dataArr = h.dataArr[:(h.size) - 1]
+		h.size--
+		h.maxHeapify(index)
+		return nil
+	}
+	h.dataArr[index] = h.dataArr[h.size - 1]
+	h.dataArr = h.dataArr[:(h.size) - 1]
+	h.size--
+	h.maxHeapify(index)
+	return nil
+}
+
 
 func (h *MaxHeap) maxHeapify(index int) {
 	left := h.leftChild(index)
@@ -112,7 +137,17 @@ func main() {
 	heap.peek()
 	fmt.Println(heap.dataArr, heap.size)
 
-	heap.extractMax()
+	err := heap.deleteKey(1)
+	if err != nil {
+		fmt.Println(err)
+	}
+	heap.peek()
+	fmt.Println(heap.dataArr, heap.size)
+
+	err = heap.deleteKey(4)
+	if err != nil {
+		fmt.Println(err)
+	}
 	heap.peek()
 	fmt.Println(heap.dataArr, heap.size)
 }
