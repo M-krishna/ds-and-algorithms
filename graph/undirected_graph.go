@@ -41,7 +41,8 @@ func (g *UndirectedGraph) displayGraph() {
 }
 
 func main() {
-	graph := NewUndirectedGraph(4)
+	vertices := 4
+	graph := NewUndirectedGraph(vertices)
 	graph.addEdge(0,1)
 	graph.addEdge(0,2)
 	graph.addEdge(1,2)
