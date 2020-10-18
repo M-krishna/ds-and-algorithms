@@ -13,7 +13,7 @@ func Preorder(node *Node) {
 	if node == nil {
 		return
 	}
-	fmt.Println(node.data)
+	fmt.Printf("%d ", node.data)
 	Preorder(node.left)
 	Preorder(node.right)
 }
@@ -24,7 +24,7 @@ func Inorder(node *Node) {
 	}
 
 	Inorder(node.left)
-	fmt.Println(node.data)
+	fmt.Printf("%d ", node.data)
 	Inorder(node.right)
 }
 
@@ -35,7 +35,18 @@ func Postorder(node *Node) {
 
 	Postorder(node.left)
 	Postorder(node.right)
-	fmt.Println(node.data)
+	fmt.Printf("%d ", node.data)
+}
+
+// Reverse a binary tree
+func reverse(node *Node) {
+	if node == nil {
+		return
+	}
+
+	node.left, node.right = node.right, node.left
+	reverse(node.left)
+	reverse(node.right)
 }
 
 func main() {
@@ -48,8 +59,16 @@ func main() {
 	root.right.right = &Node{data: 7,}
 	fmt.Println("Inorder")
 	Inorder(&root)
+	fmt.Println()
 	fmt.Println("Preorder")
 	Preorder(&root)
+	fmt.Println()
 	fmt.Println("Postorder")
 	Postorder(&root)
+	fmt.Println()
+
+	// Reverse
+	fmt.Println("After Reverse Inorder")
+	reverse(&root)
+	Inorder(&root)
 }
