@@ -79,6 +79,22 @@ func (l *List) IterativeReverse() {
 	l.head = previousNode
 }
 
+// Sort the LinkedList
+func (l *List) sort() {
+	current := l.head
+	var index *Node = nil
+
+	for current != nil {
+		index = current.next
+		for index != nil {
+			if current.value > index.value {
+				current.value, index.value = index.value, current.value
+			}
+			index = index.next
+		}
+		current = current.next
+	}
+}
 
 
 func main(){
@@ -108,5 +124,7 @@ func main(){
 	// Delete a specific node.
 	// items.deleteNode(&node1)
 	items.IterativeReverse()
+	items.display()
+	items.sort()
 	items.display()
 }
