@@ -2,17 +2,19 @@
 // To do LOT we have first find the height of the binary tree.
 // we can find the height by going from root node to deepest leaf node (recursively)
 
+// Time Complexity O(n^2) for worst case. In a skewed tree its O(log n)
+// Space complxity O(n).
+
 package main
 
 import "fmt"
 
 type Node struct {
 	data int
-	left *Node
-	right *Node
+	left, right *Node
 }
 
-func NewTree(data int) *Node {
+func NewNode(data int) *Node {
 	return &Node{
 		data: data,
 	}
@@ -55,11 +57,11 @@ func levelOrderTraversal(node *Node, level int) {
 
 
 func main() {
-	root := NewTree(10)
-	root.left = &Node{data: 20,}
-	root.right = &Node{data: 30,}
-	root.left.left = &Node{data: 40,}
-	root.left.right = &Node{data: 50,}
+	root := NewNode(10)
+	root.left = NewNode(20)
+	root.right = NewNode(30)
+	root.left.left = NewNode(40)
+	root.left.right = NewNode(50)
 	
 	fmt.Println(treeHeight(root))
 	printLevelOrderTraversal(root)
