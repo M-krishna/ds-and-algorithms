@@ -32,7 +32,7 @@ func (q *Queue) IsEmpty() bool {
 
 func (q *Queue) Peek() {
 	if q.IsEmpty() {
-		fmt.Println("Queue Underflow")
+		fmt.Println("Queue is empty!")
 		return
 	}
 	fmt.Println(q.Array[q.Rear])
@@ -50,7 +50,7 @@ func (q *Queue) EnQueue(data int) {
 
 func (q *Queue) DeQueue() {
 	if q.IsEmpty() {
-		fmt.Println("Queue Underflow")
+		fmt.Println("Queue is empty")
 		return
 	}
 	item := q.Array[q.Front]
@@ -63,5 +63,17 @@ func main() {
 	q := NewQueue(5)
 	fmt.Println(q.IsFull())
 	fmt.Println(q.IsEmpty())
+	q.Peek()
+	q.EnQueue(1)
+	q.EnQueue(2)
+	q.EnQueue(3)
+	q.EnQueue(4)
+	q.EnQueue(5)
+	q.DeQueue()
+	q.DeQueue()
+	q.DeQueue()
+	q.DeQueue()
+	q.DeQueue()
+	fmt.Println(q.Size)
 	q.Peek()
 }
