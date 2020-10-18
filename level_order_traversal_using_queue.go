@@ -11,10 +11,6 @@ type Node struct {
 	left, right *Node
 }
 
-type Tree struct {
-	root *Node
-}
-
 type Queue struct {
 	front, rear int
 	data []*Node
