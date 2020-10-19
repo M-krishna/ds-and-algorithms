@@ -79,8 +79,10 @@ func (l *List) IterativeReverse() {
 	l.head = previousNode
 }
 
-// Sort the LinkedList
-func (l *List) sort() {
+// Sort the LinkedList using bubble sort
+// Time Complexity: O(n^2)
+// Space Complexity: O(1)
+func (l *List) bubbleSort() {
 	current := l.head
 	var index *Node = nil
 
@@ -96,12 +98,11 @@ func (l *List) sort() {
 	}
 }
 
-
 func main(){
 	items := &List{}
-	node1 := Node{value: 1,}
+	node1 := Node{value: 10,}
 	node2 := Node{value: 2,}
-	node3 := Node{value: 3,}
+	node3 := Node{value: 33,}
 	node4 := Node{value: 4,}
 
 	items.insertNode(&node1)
@@ -125,6 +126,6 @@ func main(){
 	// items.deleteNode(&node1)
 	items.IterativeReverse()
 	items.display()
-	items.sort()
+	items.bubbleSort()
 	items.display()
 }
