@@ -25,6 +25,8 @@ func NewNode(value float64) *Node {
 	}
 }
 
+// Time Complexity for height function is O(n)
+// Space Complexity for height function is O(h)
 func height(root *Node) float64 {
 	if root == nil {
 		return 0
