@@ -9,11 +9,11 @@ type Node struct {
 	left, right *Node
 }
 
-type BinaryTree struct {
+type BinarySearchTree struct {
 	root *Node
 }
 
-func (t *BinaryTree) insert(data int) *BinaryTree {
+func (t *BinarySearchTree) insert(data int) *BinarySearchTree {
 	if t.root == nil {
 		t.root = &Node{data: data,}
 	} else {
@@ -40,7 +40,7 @@ func (n *Node) insert(data int) {
 	}
 }
 
-func (t *BinaryTree) Preorder(node *Node) {
+func (t *BinarySearchTree) Preorder(node *Node) {
 	if node == nil {
 		return
 	}
@@ -50,7 +50,7 @@ func (t *BinaryTree) Preorder(node *Node) {
 	t.Preorder(node.right)
 }
 
-func (t *BinaryTree) Inorder(node *Node) {
+func (t *BinarySearchTree) Inorder(node *Node) {
 	if node == nil {
 		return
 	}
@@ -60,7 +60,7 @@ func (t *BinaryTree) Inorder(node *Node) {
 	t.Inorder(node.right)
 }
 
-func (t *BinaryTree) Postorder(node *Node) {
+func (t *BinarySearchTree) Postorder(node *Node) {
 	if node == nil {
 		return
 	}
@@ -71,7 +71,7 @@ func (t *BinaryTree) Postorder(node *Node) {
 }
 
 // Iterative Search of a node
-func (t *BinaryTree) Search(data int) {
+func (t *BinarySearchTree) Search(data int) {
 	currentNode := t.root
 
 	for currentNode != nil {
@@ -88,7 +88,7 @@ func (t *BinaryTree) Search(data int) {
 }
 
 // Get the inorder successor value of the node
-func (t *BinaryTree) MinValue(node *Node) *Node {
+func (t *BinarySearchTree) MinValue(node *Node) *Node {
 	if node == nil {
 		return nil
 	}
@@ -101,7 +101,7 @@ func (t *BinaryTree) MinValue(node *Node) *Node {
 }
 
 // Deleting a node (Recursive solution)
-func (t *BinaryTree) Delete(root *Node, data int) *Node {
+func (t *BinarySearchTree) Delete(root *Node, data int) *Node {
 	if root == nil {
 		return nil
 	}
@@ -128,7 +128,7 @@ func (t *BinaryTree) Delete(root *Node, data int) *Node {
 }
 
 func main() {
-	tree := &BinaryTree{}
+	tree := &BinarySearchTree{}
 	tree.insert(100).
 		insert(-20).
         insert(-50).

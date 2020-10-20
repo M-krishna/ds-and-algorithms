@@ -51,6 +51,8 @@ func isBalanced(node *Node) bool {
 	return false
 }
 
+// TODO: Implement Inorder check.
+
 func main() {
 	root := NewNode(1)
 	root.left = NewNode(2)
