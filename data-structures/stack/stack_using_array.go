@@ -1,10 +1,15 @@
 // Stack implemented using an array
 package stack
 
-import "fmt"
+import (
+	"errors"
+)
 
 type Stack interface {
 	IsEmpty() bool
+	Push(string)
+	Pop() (string, error)
+	Peek() (string, error)
 }
 
 type stack struct {
@@ -25,19 +30,20 @@ func (s *stack) Push(d string) {
 	s.arr = append(s.arr, d)
 }
 
-func (s *stack) Pop() {
+func (s *stack) Pop() (string, error) {
 	if s.IsEmpty() {
-		fmt.Println("Stack is empty")
+		return "", errors.New("Stack is Empty!")
 	}
 	length := len(s.arr)
+	popped_element := s.arr[length-1]
 	s.arr = s.arr[:length-1]
+	return popped_element, nil
 }
 
-func (s *stack) Peek() {
+func (s *stack) Peek() (string, error) {
 	if s.IsEmpty() {
-		fmt.Println("Stack is empty")
-		return
+		return "", errors.New("Stack is empty!")
 	}
 	length := len(s.arr)
-	fmt.Println(s.arr[length-1])
+	return s.arr[length-1], nil
 }
