@@ -33,7 +33,7 @@ func heapSort(arr []int) {
 }
 
 func main() {
-	arr := []int{10,9,8,7,6,5}
+	arr := []int{10, 9, 8, 7, 6, 5}
 	heapSort(arr)
 	for _, v := range arr {
 		fmt.Printf("%d ", v)

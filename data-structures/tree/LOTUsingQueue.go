@@ -7,15 +7,15 @@ package main
 import "fmt"
 
 type Node struct {
-	data int
+	data        int
 	left, right *Node
 }
 
 type Queue struct {
 	front, rear int
-	data []*Node
-	capacity int
-	size int
+	data        []*Node
+	capacity    int
+	size        int
 }
 
 func NewNode(data int) *Node {
@@ -26,11 +26,11 @@ func NewNode(data int) *Node {
 
 func NewQueue(capacity int) *Queue {
 	return &Queue{
-		front: 0,
-		rear: capacity - 1,
+		front:    0,
+		rear:     capacity - 1,
 		capacity: capacity,
-		size: 0,
-		data: make([]*Node, capacity),
+		size:     0,
+		data:     make([]*Node, capacity),
 	}
 }
 
@@ -62,7 +62,6 @@ func (q *Queue) Dequeue() *Node {
 	q.size--
 	return data
 }
-
 
 func printLevelOrderTraversal(node *Node) {
 	// create an empty queue

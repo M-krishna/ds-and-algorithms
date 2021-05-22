@@ -2,11 +2,10 @@ package main
 
 import "fmt"
 
-
 func merge(arr []int, l, m, r int) {
 	// find the length of left and right array
-	n1 := m-l+1
-	n2 := r-m
+	n1 := m - l + 1
+	n2 := r - m
 
 	// create temp arrays
 	L := make([]int, n1)
@@ -52,7 +51,7 @@ func merge(arr []int, l, m, r int) {
 
 func sort(arr []int, l, r int) {
 	if l < r {
-		mid := (l+r)/2
+		mid := (l + r) / 2
 
 		sort(arr, l, mid)
 		sort(arr, mid+1, r)
@@ -62,9 +61,8 @@ func sort(arr []int, l, r int) {
 	fmt.Println(arr)
 }
 
-
 func main() {
-	arr := []int{38,27,43,3,9,82,10}
+	arr := []int{38, 27, 43, 3, 9, 82, 10}
 	l := 0
 	r := len(arr) - 1
 	sort(arr, l, r)

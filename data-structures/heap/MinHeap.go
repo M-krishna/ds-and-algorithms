@@ -8,15 +8,15 @@ import (
 
 type MinHeap struct {
 	capacity int
-	size int
-	dataArr []int
+	size     int
+	dataArr  []int
 }
 
 func NewMinHeap(capacity int) *MinHeap {
 	return &MinHeap{
 		capacity: capacity,
-		size: 0,
-		dataArr: make([]int, 0),
+		size:     0,
+		dataArr:  make([]int, 0),
 	}
 }
 
@@ -25,18 +25,18 @@ func (h *MinHeap) parent(index int) int {
 }
 
 func (h *MinHeap) leftChild(index int) int {
-	return (2*index) + 1
+	return (2 * index) + 1
 }
 
 func (h *MinHeap) rightChild(index int) int {
-	return (2*index) + 2
+	return (2 * index) + 2
 }
 
 func (h *MinHeap) swap(first, second int) {
 	h.dataArr[first], h.dataArr[second] = h.dataArr[second], h.dataArr[first]
 }
 
-func (h *MinHeap) insert(data int) error{
+func (h *MinHeap) insert(data int) error {
 	if h.size == h.capacity {
 		return fmt.Errorf("Heap Overflow")
 	}
@@ -69,14 +69,14 @@ func (h *MinHeap) deleteKey(index int) {
 	h.extractMin()
 }
 
-// Decrease the value of key in index with the new_value. 
+// Decrease the value of key in index with the new_value.
 // It is assumed that the new_value is less than h.dataArr[index]
 func (h *MinHeap) decreaseKey(index int, new_value float64) {
 	h.dataArr[index] = int(new_value)
 	for index != 0 && h.dataArr[index] < h.dataArr[h.parent(index)] {
 		h.swap(index, h.parent(index))
 		index = h.parent(index)
-	} 
+	}
 }
 
 // Method to remove minimum element (or the root) from min heap
@@ -89,8 +89,8 @@ func (h *MinHeap) extractMin() int {
 	}
 
 	root := h.dataArr[0]
-	h.dataArr[0] = h.dataArr[h.size - 1]
-	h.dataArr = h.dataArr[:(h.size) - 1]
+	h.dataArr[0] = h.dataArr[h.size-1]
+	h.dataArr = h.dataArr[:(h.size)-1]
 	h.size--
 	h.minHeapify(0)
 	return root
@@ -117,13 +117,12 @@ func (h *MinHeap) minHeapify(index int) {
 func (h *MinHeap) buildMinHeap() {
 	for index := ((h.size / 2) - 1); index >= 0; index-- {
 		h.minHeapify(index)
-	} 
+	}
 }
-
 
 func main() {
 	// create a new min heap
-	arr := []int{3,2,1,15,5,4,45}
+	arr := []int{3, 2, 1, 15, 5, 4, 45}
 	length := len(arr)
 	heap := NewMinHeap(length)
 

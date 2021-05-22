@@ -12,7 +12,7 @@ func interpolationSearch(arr []int, target int) int {
 	high := len(arr) - 1
 
 	for low <= high && target >= arr[low] && target <= arr[high] {
-		mid := low + ((high - low) / (arr[high] - arr[low])) * (target - arr[low])
+		mid := low + ((high-low)/(arr[high]-arr[low]))*(target-arr[low])
 
 		if arr[mid] == target {
 			return mid
@@ -28,7 +28,7 @@ func interpolationSearch(arr []int, target int) int {
 // Recursive Method
 func interpolationSearchRecursive(arr []int, low, high, target int) int {
 	if low <= high && target >= arr[low] && target <= arr[high] {
-		mid := low + ((high - low) / (arr[high] - arr[low])) * (target - arr[low])
+		mid := low + ((high-low)/(arr[high]-arr[low]))*(target-arr[low])
 
 		if arr[mid] == target {
 			return mid
@@ -42,7 +42,7 @@ func interpolationSearchRecursive(arr []int, low, high, target int) int {
 }
 
 func main() {
-	arr := []int{1,2,3,4,5,6,7,8,9,10}
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	target := 11
 	// fmt.Println(interpolationSearch(arr, target))
 

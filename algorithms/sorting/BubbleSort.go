@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 // This function will run in O(n2)
-func bubbleSort(arr []int) []int{
+func bubbleSort(arr []int) []int {
 	l := len(arr)
 	for i := 0; i < l-1; i++ {
 		for j := 0; j < l-i-1; j++ {
@@ -34,11 +34,9 @@ func bubbleSortOptimzed(arr []int) []int {
 	return arr
 }
 
-
-
 func main() {
-	arr := []int{10,98,50,2,3,16}
+	arr := []int{10, 98, 50, 2, 3, 16}
 	fmt.Println(bubbleSort(arr))
-	sorted_array := []int{1,2,3,4,5,6}
+	sorted_array := []int{1, 2, 3, 4, 5, 6}
 	fmt.Println(bubbleSortOptimzed(sorted_array))
 }

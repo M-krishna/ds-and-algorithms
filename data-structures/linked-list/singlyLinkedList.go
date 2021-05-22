@@ -2,16 +2,16 @@ package main
 
 import "fmt"
 
-type Node struct{
+type Node struct {
 	value int
-	next *Node
+	next  *Node
 }
 
-type List struct{
+type List struct {
 	head *Node
 }
 
-func (l *List) insertNode (newNode *Node){
+func (l *List) insertNode(newNode *Node) {
 	if l.head == nil {
 		l.head = newNode
 	} else {
@@ -27,11 +27,11 @@ func (l *List) removeFirstNode() {
 	list := l.head
 	if list != nil {
 		l.head = l.head.next
-		return	
+		return
 	}
 }
 
-func (l *List) deleteNode (node *Node){
+func (l *List) deleteNode(node *Node) {
 	temp := l.head
 	if temp != nil {
 		if temp == node {
@@ -70,7 +70,7 @@ func (l *List) IterativeReverse() {
 	var currentNode *Node = l.head
 	var nextNode *Node = nil
 
-	for currentNode != nil{
+	for currentNode != nil {
 		nextNode = currentNode.next
 		currentNode.next = previousNode
 		previousNode = currentNode
@@ -98,12 +98,12 @@ func (l *List) bubbleSort() {
 	}
 }
 
-func main(){
+func main() {
 	items := &List{}
-	node1 := Node{value: 10,}
-	node2 := Node{value: 2,}
-	node3 := Node{value: 33,}
-	node4 := Node{value: 4,}
+	node1 := Node{value: 10}
+	node2 := Node{value: 2}
+	node3 := Node{value: 33}
+	node4 := Node{value: 4}
 
 	items.insertNode(&node1)
 	items.insertNode(&node2)

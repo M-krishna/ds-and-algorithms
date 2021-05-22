@@ -1,6 +1,8 @@
 package main
 
-import ("fmt")
+import (
+	"fmt"
+)
 
 type Node struct {
 	data int
@@ -13,13 +15,13 @@ type List struct {
 	tail *Node
 }
 
-func createList () *List {
+func createList() *List {
 	return &List{}
 }
 
 func (l *List) insertNewNodeAtLast(data int) {
 	// create a node
-	node := &Node{data: data,}
+	node := &Node{data: data}
 
 	if l.head == nil {
 		l.head = node
@@ -32,7 +34,7 @@ func (l *List) insertNewNodeAtLast(data int) {
 }
 
 func (l *List) insertNewNodeAtFirst(data int) {
-	node := &Node{data: data,}
+	node := &Node{data: data}
 	if l.head == nil {
 		l.head = node
 	} else {
@@ -44,7 +46,7 @@ func (l *List) insertNewNodeAtFirst(data int) {
 }
 
 func (l *List) addNodeAfterAGivenNode(prevNode int, data int) {
-	node := &Node{data: data,}
+	node := &Node{data: data}
 	if l.head == nil {
 		l.head = node
 	} else if l.head.data == prevNode {
@@ -61,7 +63,7 @@ func (l *List) addNodeAfterAGivenNode(prevNode int, data int) {
 	} else {
 		currentNode := l.head
 		for currentNode != nil {
-			if(currentNode.data == prevNode) {
+			if currentNode.data == prevNode {
 				temp := currentNode
 				node.prev = temp
 				node.next = temp.next
@@ -74,7 +76,7 @@ func (l *List) addNodeAfterAGivenNode(prevNode int, data int) {
 }
 
 func (l *List) addNodeBeforeAGivenNode(nextNode int, data int) {
-	node := &Node{data: data,}
+	node := &Node{data: data}
 	if l.head == nil {
 		return
 	} else if l.head.data == nextNode {
@@ -93,7 +95,7 @@ func (l *List) addNodeBeforeAGivenNode(nextNode int, data int) {
 	} else {
 		currentNode := l.head
 		for currentNode != nil {
-			if(currentNode.data == nextNode) {
+			if currentNode.data == nextNode {
 				node.prev = currentNode.prev
 				currentNode.prev.next = node
 				currentNode.prev = node

@@ -10,7 +10,7 @@ package main
 import "fmt"
 
 type Node struct {
-	data int
+	data        int
 	left, right *Node
 }
 
@@ -20,7 +20,7 @@ func NewNode(data int) *Node {
 	}
 }
 
-func treeHeight(node *Node) int{
+func treeHeight(node *Node) int {
 	if node == nil {
 		return 0
 	}
@@ -50,11 +50,10 @@ func levelOrderTraversal(node *Node, level int) {
 	if level == 0 {
 		fmt.Printf("%d ", node.data)
 	} else {
-		levelOrderTraversal(node.left, level - 1)
-		levelOrderTraversal(node.right, level - 1)
+		levelOrderTraversal(node.left, level-1)
+		levelOrderTraversal(node.right, level-1)
 	}
 }
-
 
 func main() {
 	root := NewNode(10)
@@ -62,7 +61,7 @@ func main() {
 	root.right = NewNode(30)
 	root.left.left = NewNode(40)
 	root.left.right = NewNode(50)
-	
+
 	fmt.Println(treeHeight(root))
 	printLevelOrderTraversal(root)
 }

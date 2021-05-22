@@ -4,7 +4,7 @@ package main
 import "fmt"
 
 type Node struct {
-	value int
+	value       int
 	left, right *Node
 }
 
@@ -14,21 +14,21 @@ type BinaryTree struct {
 
 type Queue struct {
 	front, rear, size, capacity int
-	data []*Node
+	data                        []*Node
 }
 
 func NewQueue(capacity int) *Queue {
 	return &Queue{
-		size: 0,
+		size:     0,
 		capacity: capacity,
-		front: 0,
-		rear: capacity - 1,
-		data: make([]*Node, capacity),
+		front:    0,
+		rear:     capacity - 1,
+		data:     make([]*Node, capacity),
 	}
 }
 
 func NewBinaryTree(rootValue int) *BinaryTree {
-	node := &Node{value: rootValue,}
+	node := &Node{value: rootValue}
 	return &BinaryTree{
 		root: node,
 	}
@@ -92,7 +92,7 @@ func (b *BinaryTree) PrintLevelOrderTraversal() {
 }
 
 // Using the same LOT Queue fashion to delete the node
-func (b *BinaryTree) DeleteDeepest(nodeToBeDeleted *Node){
+func (b *BinaryTree) DeleteDeepest(nodeToBeDeleted *Node) {
 	// create an empty queue
 	q := NewQueue(5)
 
@@ -101,7 +101,6 @@ func (b *BinaryTree) DeleteDeepest(nodeToBeDeleted *Node){
 
 	// create a temp_node variable
 	var temp_node *Node = nil
-
 
 	// continue until the queue is empty.
 	for !q.IsEmpty() {
@@ -162,10 +161,6 @@ func (b *BinaryTree) DeleteKey(key int) {
 		key_node.value = temp_node_data
 	}
 }
-
-
-
-
 
 func main() {
 	tree := NewBinaryTree(1)

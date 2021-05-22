@@ -11,10 +11,9 @@ var (
 )
 
 type Node struct {
-	value int
+	value       int
 	left, right *Node
 }
-
 
 func NewNode(value int) *Node {
 	return &Node{

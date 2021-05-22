@@ -7,7 +7,7 @@ package main
 import "fmt"
 
 type QElement struct {
-	data int
+	data     int
 	priority int
 }
 
@@ -20,7 +20,7 @@ func (p *PriorityQueue) IsEmpty() bool {
 }
 
 func (p *PriorityQueue) EnQueue(d, p int) {
-	element := QElement{data: d, priority: p,}
+	element := QElement{data: d, priority: p}
 	l := len(p.items)
 	contain := false
 	for i := 0; i < l; i++ {
@@ -40,13 +40,12 @@ func (p *PriorityQueue) DeQueue() {
 		return
 	}
 
-
 }
 
 func (p *PriorityQueue) Front() {
 	if p.IsEmpty() {
 		fmt.Println("Underflow")
-		return 
+		return
 	}
 	fmt.Println(p.items[0])
 }
@@ -56,7 +55,7 @@ func (p *PriorityQueue) Rear() {
 		fmt.Println("Overflow")
 		return
 	}
-	fmt.Println(p.items[len(items) - 1])
+	fmt.Println(p.items[len(items)-1])
 }
 
 func main() {

@@ -6,20 +6,20 @@ import (
 
 type MaxHeap struct {
 	capacity int
-	size int
-	dataArr []int
+	size     int
+	dataArr  []int
 }
 
 func NewMaxHeap(capacity int) *MaxHeap {
 	return &MaxHeap{
 		capacity: capacity,
-		size: 0,
-		dataArr: make([]int, 0),
+		size:     0,
+		dataArr:  make([]int, 0),
 	}
 }
 
 func (h *MaxHeap) leaf(index int) bool {
-	if index >= (h.size) / 2 && index <= h.size {
+	if index >= (h.size)/2 && index <= h.size {
 		return true
 	}
 	return false
@@ -30,14 +30,14 @@ func (h *MaxHeap) parent(index int) int {
 }
 
 func (h *MaxHeap) leftChild(index int) int {
-	return (2*index) + 1
+	return (2 * index) + 1
 }
 
 func (h *MaxHeap) rightChild(index int) int {
-	return (2*index) + 2
+	return (2 * index) + 2
 }
 
-func (h *MaxHeap) insert(data int) error{
+func (h *MaxHeap) insert(data int) error {
 	if h.size >= h.capacity {
 		return fmt.Errorf("Heap Overflow!")
 	}
@@ -58,7 +58,7 @@ func (h *MaxHeap) swap(first, second int) {
 	h.dataArr[first], h.dataArr[second] = h.dataArr[second], h.dataArr[first]
 }
 
-func (h *MaxHeap) peek() error{
+func (h *MaxHeap) peek() error {
 	if h.size == 0 {
 		fmt.Errorf("Heap is empty!")
 	}
@@ -75,31 +75,30 @@ func (h *MaxHeap) extractMax() int {
 	}
 
 	root := h.dataArr[0]
-	h.dataArr[0] = h.dataArr[h.size - 1]
-	h.dataArr = h.dataArr[:(h.size) - 1]
+	h.dataArr[0] = h.dataArr[h.size-1]
+	h.dataArr = h.dataArr[:(h.size)-1]
 	h.size--
 	h.maxHeapify(0)
 	return root
 }
 
-func (h *MaxHeap) deleteKey(index int) error{
+func (h *MaxHeap) deleteKey(index int) error {
 	if h.size <= index {
 		return fmt.Errorf("Heap overflow!")
 	}
 
 	if h.leaf(index) {
-		h.dataArr = h.dataArr[:(h.size) - 1]
+		h.dataArr = h.dataArr[:(h.size)-1]
 		h.size--
 		h.maxHeapify(index)
 		return nil
 	}
-	h.dataArr[index] = h.dataArr[h.size - 1]
-	h.dataArr = h.dataArr[:(h.size) - 1]
+	h.dataArr[index] = h.dataArr[h.size-1]
+	h.dataArr = h.dataArr[:(h.size)-1]
 	h.size--
 	h.maxHeapify(index)
 	return nil
 }
-
 
 func (h *MaxHeap) maxHeapify(index int) {
 	left := h.leftChild(index)
@@ -121,7 +120,7 @@ func (h *MaxHeap) maxHeapify(index int) {
 }
 
 func main() {
-	arr := []int{3,2,1,15,5,4,45}
+	arr := []int{3, 2, 1, 15, 5, 4, 45}
 	length := len(arr)
 	heap := NewMaxHeap(length)
 

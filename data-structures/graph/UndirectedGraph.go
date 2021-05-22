@@ -1,4 +1,4 @@
-// creating an undirected graph using 
+// creating an undirected graph using
 // adjacency matrix
 
 package main
@@ -7,7 +7,7 @@ import "fmt"
 
 type UndirectedGraph struct {
 	AdjMatrix [][]int
-	vertices int
+	vertices  int
 }
 
 func NewUndirectedGraph(vertices int) *UndirectedGraph {
@@ -17,7 +17,7 @@ func NewUndirectedGraph(vertices int) *UndirectedGraph {
 	}
 	return &UndirectedGraph{
 		AdjMatrix: matrix,
-		vertices: vertices,
+		vertices:  vertices,
 	}
 }
 
@@ -43,11 +43,11 @@ func (g *UndirectedGraph) displayGraph() {
 func main() {
 	vertices := 4
 	graph := NewUndirectedGraph(vertices)
-	graph.addEdge(0,1)
-	graph.addEdge(0,2)
-	graph.addEdge(1,2)
-	graph.addEdge(2,0)
-	graph.addEdge(2,3)
+	graph.addEdge(0, 1)
+	graph.addEdge(0, 2)
+	graph.addEdge(1, 2)
+	graph.addEdge(2, 0)
+	graph.addEdge(2, 3)
 
 	graph.displayGraph()
 }

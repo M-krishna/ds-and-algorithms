@@ -5,20 +5,20 @@ package main
 import "fmt"
 
 type Queue struct {
-	Front int
-	Rear int
-	Array []int
+	Front    int
+	Rear     int
+	Array    []int
 	Capacity int
-	Size int
+	Size     int
 }
 
 func NewQueue(capacity int) *Queue {
 	return &Queue{
-		Front: 0,
-		Rear: capacity - 1,
-		Array: make([]int, capacity),
+		Front:    0,
+		Rear:     capacity - 1,
+		Array:    make([]int, capacity),
 		Capacity: capacity,
-		Size: 0,
+		Size:     0,
 	}
 }
 

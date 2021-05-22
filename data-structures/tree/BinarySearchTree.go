@@ -5,7 +5,7 @@ package main
 import "fmt"
 
 type Node struct {
-	data int
+	data        int
 	left, right *Node
 }
 
@@ -15,7 +15,7 @@ type BinarySearchTree struct {
 
 func (t *BinarySearchTree) insert(data int) *BinarySearchTree {
 	if t.root == nil {
-		t.root = &Node{data: data,}
+		t.root = &Node{data: data}
 	} else {
 		t.root.insert(data)
 	}
@@ -27,13 +27,13 @@ func (n *Node) insert(data int) {
 		return
 	} else if data <= n.data {
 		if n.left == nil {
-			n.left = &Node{data: data,}
+			n.left = &Node{data: data}
 		} else {
 			n.left.insert(data)
 		}
 	} else {
 		if n.right == nil {
-			n.right = &Node{data: data,}
+			n.right = &Node{data: data}
 		} else {
 			n.right.insert(data)
 		}
@@ -131,32 +131,32 @@ func main() {
 	tree := &BinarySearchTree{}
 	tree.insert(100).
 		insert(-20).
-        insert(-50).
-        insert(-15).
-        insert(-60).
-        insert(50).
-        insert(60).
-        insert(55).
-        insert(85).
-        insert(15).
-        insert(5).
-        insert(-10)
+		insert(-50).
+		insert(-15).
+		insert(-60).
+		insert(50).
+		insert(60).
+		insert(55).
+		insert(85).
+		insert(15).
+		insert(5).
+		insert(-10)
 
-    fmt.Println("Preorder")
-    tree.Preorder(tree.root)
+	fmt.Println("Preorder")
+	tree.Preorder(tree.root)
 
-    fmt.Println("Inorder")
-    tree.Inorder(tree.root)
+	fmt.Println("Inorder")
+	tree.Inorder(tree.root)
 
-    fmt.Println("Postorder")
-    tree.Postorder(tree.root)
+	fmt.Println("Postorder")
+	tree.Postorder(tree.root)
 
-    fmt.Println("Search")
-    tree.Search(55)
+	fmt.Println("Search")
+	tree.Search(55)
 
-    fmt.Println("Delete")
-    tree.Delete(tree.root, 55)
+	fmt.Println("Delete")
+	tree.Delete(tree.root, 55)
 
-    fmt.Println("Inorder Traversal after deletion")
-    tree.Inorder(tree.root)
+	fmt.Println("Inorder Traversal after deletion")
+	tree.Inorder(tree.root)
 }

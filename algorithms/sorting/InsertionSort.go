@@ -18,6 +18,6 @@ func insertionSort(arr []int) []int {
 }
 
 func main() {
-	arr := []int{4,3,2,10,12,15,6}
+	arr := []int{4, 3, 2, 10, 12, 15, 6}
 	fmt.Println(insertionSort(arr))
 }

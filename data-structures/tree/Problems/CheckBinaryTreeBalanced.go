@@ -15,7 +15,7 @@ import (
 )
 
 type Node struct {
-	value float64
+	value       float64
 	left, right *Node
 }
 
@@ -45,7 +45,7 @@ func isBalanced(node *Node) bool {
 	lh := height(node.left)
 	rh := height(node.right)
 
-	if math.Abs(lh - rh) <= 1 && isBalanced(node.left) && isBalanced(node.right) {
+	if math.Abs(lh-rh) <= 1 && isBalanced(node.left) && isBalanced(node.right) {
 		return true
 	}
 	return false

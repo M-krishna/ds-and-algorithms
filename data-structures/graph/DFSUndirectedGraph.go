@@ -7,7 +7,7 @@ import "fmt"
 
 type undirectedGraph struct {
 	AdjMatrix [][]int
-	vertices int
+	vertices  int
 }
 
 func NewUndirectedGraph(vertices int) *undirectedGraph {
@@ -18,7 +18,7 @@ func NewUndirectedGraph(vertices int) *undirectedGraph {
 
 	return &undirectedGraph{
 		AdjMatrix: matrix,
-		vertices: vertices,
+		vertices:  vertices,
 	}
 }
 
@@ -49,15 +49,14 @@ func (g *undirectedGraph) DFS(start int, visited []bool) {
 	}
 }
 
-
 func main() {
 	vertices := 4
 	graph := NewUndirectedGraph(vertices)
 
-	graph.addEdge(0,1)
-	graph.addEdge(0,2)
-	graph.addEdge(1,2)
-	graph.addEdge(2,3)
+	graph.addEdge(0, 1)
+	graph.addEdge(0, 2)
+	graph.addEdge(1, 2)
+	graph.addEdge(2, 3)
 
 	visited_arr := make([]bool, vertices)
 

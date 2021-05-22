@@ -12,7 +12,7 @@ func LinearSearch(arr []int, target int) int {
 }
 
 func main() {
-	arr := []int{1,2,3,4,5}
+	arr := []int{1, 2, 3, 4, 5}
 	target := 51
 	fmt.Println(LinearSearch(arr, target))
 }

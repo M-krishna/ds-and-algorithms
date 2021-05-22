@@ -1,6 +1,8 @@
 package main
 
-import ("fmt")
+import (
+	"fmt"
+)
 
 type Node struct {
 	data int
@@ -11,13 +13,12 @@ type List struct {
 	head *Node
 }
 
-
 func createList() *List {
 	return &List{}
 }
 
 func (l *List) insertAtBeginning(data int) {
-	node := &Node{data: data,}
+	node := &Node{data: data}
 	if l.head == nil {
 		l.head = node
 		node.next = l.head
@@ -34,7 +35,7 @@ func (l *List) insertAtBeginning(data int) {
 }
 
 func (l *List) insertAtLast(data int) {
-	node := &Node{data: data,}
+	node := &Node{data: data}
 	if l.head == nil {
 		l.head = node
 		node.next = l.head
@@ -46,7 +47,7 @@ func (l *List) insertAtLast(data int) {
 		currentNode.next = node
 		node.next = l.head
 	}
-} 
+}
 
 func (l *List) displayItems() {
 	var currentNode *Node = l.head
