@@ -1,4 +1,5 @@
 # Golang Algorithms and Data Structures
+![build](https://github.com/M-krishna/golang-algorithms/actions/workflows/ci.yml/badge.svg)
 
 This repository contains Golang based examples of many popular algorithms and data structures.
 
