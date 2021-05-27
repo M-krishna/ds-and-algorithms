@@ -25,3 +25,6 @@ jobs:
 
       - name: Stack package test
         run: go test -v ./data-structures/stack
+
+      - name: Queue package test
+        run: go test -v ./data-structures/queue
