@@ -1,79 +1,66 @@
 // Implementation of Queue using 1D Array
 
-package main
+package queue
 
-import "fmt"
+import "errors"
 
-type Queue struct {
-	Front    int
-	Rear     int
-	Array    []int
-	Capacity int
-	Size     int
+type Queue interface {
+	IsEmpty() bool
+	IsFull() bool
+	Peek() (string, error)
+	Enqueue(string) error
+	Dequeue() (string, error)
 }
 
-func NewQueue(capacity int) *Queue {
-	return &Queue{
-		Front:    0,
-		Rear:     capacity - 1,
-		Array:    make([]int, capacity),
-		Capacity: capacity,
-		Size:     0,
+type queue struct {
+	front    int
+	rear     int
+	arr      []string
+	capacity int
+	size     int
+}
+
+func NewQueue(capacity int) Queue {
+	return &queue{
+		front:    0,
+		rear:     capacity - 1,
+		arr:      make([]string, capacity),
+		capacity: capacity,
+		size:     0,
 	}
 }
 
-func (q *Queue) IsFull() bool {
-	return q.Size == q.Capacity
+func (q *queue) IsEmpty() bool {
+	return q.size == 0
 }
 
-func (q *Queue) IsEmpty() bool {
-	return q.Size == 0
+func (q *queue) IsFull() bool {
+	return q.size == q.capacity
 }
 
-func (q *Queue) Peek() {
+func (q *queue) Peek() (string, error) {
 	if q.IsEmpty() {
-		fmt.Println("Queue is empty!")
-		return
+		return "", errors.New("Queue is empty!")
 	}
-	fmt.Println(q.Array[q.Rear])
+	return q.arr[q.front], nil
 }
 
-func (q *Queue) EnQueue(data int) {
+func (q *queue) Enqueue(data string) error {
 	if q.IsFull() {
-		fmt.Println("Queue Overflow")
-		return
+		return errors.New("Queue overflow!")
 	}
-	q.Rear = (q.Rear + 1) % q.Capacity
-	q.Array[q.Rear] = data
-	q.Size = q.Size + 1
+	q.rear = (q.rear + 1) % q.capacity
+	q.arr[q.rear] = data
+	q.size = q.size + 1
+	return nil
 }
 
-func (q *Queue) DeQueue() {
+func (q *queue) Dequeue() (string, error) {
 	if q.IsEmpty() {
-		fmt.Println("Queue is empty")
-		return
+		return "", errors.New("Queue is empty!")
 	}
-	item := q.Array[q.Front]
-	q.Front = (q.Front + 1) % q.Capacity
-	q.Size = q.Size - 1
-	fmt.Println(item)
-}
-
-func main() {
-	q := NewQueue(5)
-	fmt.Println(q.IsFull())
-	fmt.Println(q.IsEmpty())
-	q.Peek()
-	q.EnQueue(1)
-	q.EnQueue(2)
-	q.EnQueue(3)
-	q.EnQueue(4)
-	q.EnQueue(5)
-	q.DeQueue()
-	q.DeQueue()
-	q.DeQueue()
-	q.DeQueue()
-	q.DeQueue()
-	fmt.Println(q.Size)
-	q.Peek()
+	d := q.arr[q.front]
+	q.front = (q.front + 1) % q.capacity
+	q.size = q.size - 1
+	return d, nil
 }
