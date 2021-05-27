@@ -23,5 +23,5 @@ jobs:
       - name: Install all Go dependencies
         run: go get
 
-      - name: go test
-        run: go test
+      - name: Stack package test
+        run: go test -v ./data-structures/stack
