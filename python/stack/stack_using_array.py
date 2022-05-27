@@ -1,6 +1,8 @@
+# Basic Stack(LIFO) implementation using List(array)
+
 from __future__ import annotations
 
-# Stack implementation using List(array)
+
 class Stack:
     def __init__(self):
         self.items = []  # currently infinite
