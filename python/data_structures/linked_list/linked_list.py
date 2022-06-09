@@ -1,4 +1,5 @@
 # Basic Linked list implementation
+# Singly linked list
 
 from __future__ import annotations
 
