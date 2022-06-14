@@ -10,62 +10,97 @@ class Node:
         prev_node: Node | None = None,
         next_node: Node | None = None,
     ):
-        self.data = data
-        self.prev_node = prev_node
-        self.next_node = next_node
+        self.data: str | None = data
+        self.prev_node: Node | None = prev_node
+        self.next_node: Node | None = next_node
 
 
 class DoublyLinkedList:
     def __init__(self):
-        self.head = None
+        self.head: Node | None = None
+        self.tail: Node | None = None
 
     def create_node(self, data: str) -> Node:
         return Node(data=data)
 
-    def insert_node(self, data: str) -> None:
-        if self.head is None:
-            print(f"Inserting {data} as head")
-            self.head = self.create_node(data)
-            return
-
-        currentNode = self.head
-        while currentNode.next_node is not None:
-            currentNode = currentNode.next_node
-
+    def push(self, data: str) -> None:
+        print(f"Pushing {data} into DLL")
         new_node = self.create_node(data)
-        print(f"Inserting {new_node.data}")
-        currentNode.next_node = new_node
-        new_node.prev_node = currentNode
+        if self.is_empty:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next_node = new_node
+            new_node.prev_node = self.tail
+            self.tail = new_node
+
+    def insert_node_at_first(self, data: str) -> None:
+        print(f"Inserting {data} at first")
+        new_node = self.create_node(data)
+        if self.is_empty:
+            self.head = new_node
+        else:
+            new_node.next_node = self.head
+            self.head.prev_node = new_node
+            self.head = new_node
+
+    def insert_node_at_last(self, data: str) -> None:
+        print(f"Inserting {data} at last")
+        new_node = self.create_node(data)
+        if self.is_empty:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next_node = new_node
+            new_node.prev_node = self.tail
+            self.tail = new_node
+
+    def remove_head_node(self) -> None:
+        if self.is_empty:
+            print("DLL is empty")
+            return
+        print(f"Removing {self.head.data} from head node")
+        current_head_node = self.head
+        self.head = current_head_node.next_node
+        self.head.prev_node = current_head_node.prev_node
+
+    def remove_tail_node(self) -> None:
+        if self.is_empty:
+            print("DLL is empty")
+            return
+        print(f"Removing {self.tail.data} from tail")
+        current_tail_node = self.tail
+        self.tail = current_tail_node.prev_node
+        self.tail.next_node = current_tail_node.next_node
 
     def remove_node(self, data: str) -> None:
         if self.is_empty:
             print("DLL is empty")
             return
-
-        if self.head.data == data:
-            print(f"Removing head: {data}")
-            if self.head.next_node is None:
-                self.head = None
-                return
-            self.head = self.head.next_node
-            if self.head:
-                self.head.prev_node = None
-            return
-
         found = False
-        currentNode = self.head
-        while currentNode is not None:
-            if currentNode.data == data:
-                found = True
-                print(f"Removing {data} from DLL")
-                prev_node = currentNode.prev_node
-                next_node = currentNode.next_node
-                if prev_node:
+        if self.head.data == data:
+            found = True
+            current_head_node = self.head
+            self.head = current_head_node.next_node
+            self.head.prev_node = current_head_node.prev_node
+            print(f"Removed {data} from head node")
+        elif self.tail.data == data:
+            found = True
+            current_tail_node = self.tail
+            self.tail = current_tail_node.prev_node
+            self.tail.next_node = current_tail_node.next_node
+            print(f"Removed {data} from tail node")
+        else:
+            currentNode = self.head.next_node
+            while currentNode is not None:
+                if currentNode.data == data:
+                    found = True
+                    prev_node = currentNode.prev_node
+                    next_node = currentNode.next_node
                     prev_node.next_node = next_node
-                if next_node:
                     next_node.prev_node = prev_node
-                break
-            currentNode = currentNode.next_node
+                    print(f"{data} is removed from DLL")
+                    return
         if not found:
             print(f"{data} is not present in DLL")
 
@@ -75,9 +110,10 @@ class DoublyLinkedList:
 
     def print_values(self) -> None:
         if self.is_empty:
-            print("DoublyLinkedList is empty")
+            print("DLL is empty")
             return
-        print("Values: ", end=" ")
+
+        print("Printing values: ", end=" ")
         currentNode = self.head
         while currentNode is not None:
             print(f"{currentNode.data}", end=" ")
@@ -86,18 +122,14 @@ class DoublyLinkedList:
 
     def print_reverse(self) -> None:
         if self.is_empty:
-            print("DoublyLinkedList is empty")
+            print("DLL is empty")
             return
-        currentNode = self.head
+        print("Printing reverse: ", end=" ")
+        currentNode = self.tail
         while currentNode is not None:
-            last_node = currentNode
-            currentNode = currentNode.next_node
-
-        print("Reverse order: ", end=" ")
-        while last_node is not None:
-            print(last_node.data, end=" ")
-            last_node = last_node.prev_node
-        print()  # new line
+            print(f"{currentNode.data}", end=" ")
+            currentNode = currentNode.prev_node
+        print()
 
 
 if __name__ == "__main__":
@@ -106,14 +138,20 @@ if __name__ == "__main__":
     START = 0
     END = 6
 
-    for i in range(START, END):
-        dll.insert_node(str(i))
+    dll.remove_node(str(19))  # should print DLL is empty
+
+    dll.insert_node_at_last(str(10))
 
     dll.print_values()
 
     dll.print_reverse()
 
-    dll.remove_node(str(3))
+    for i in range(START, END):
+        dll.push(str(i))
+
+    dll.print_values()
+
+    dll.remove_node(str(10))
 
     dll.print_values()
 
@@ -125,25 +163,19 @@ if __name__ == "__main__":
 
     dll.print_reverse()
 
-    dll.remove_node(str(4))
+    dll.insert_node_at_first(str(9))
 
     dll.print_values()
 
     dll.print_reverse()
 
-    dll.remove_node(str(0))
+    dll.remove_head_node()
 
     dll.print_values()
 
     dll.print_reverse()
 
-    dll.remove_node(str(1))
-
-    dll.print_values()
-
-    dll.print_reverse()
-
-    dll.remove_node(str(2))
+    dll.remove_tail_node()
 
     dll.print_values()
 
