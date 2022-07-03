@@ -21,6 +21,8 @@ def reverse_linked_list_using_stack(head: Node | None = None) -> Node:
     # store the elements in the stack one by one
     # pop the elements from the stack and link it one by one
     # finally make the next of the last item/node None
+    # Time complexity: O(n)
+    # Space complexity: O(n)
     stack, temp = [], head
 
     while temp:
