@@ -17,6 +17,27 @@ def print_values(head: Node) -> None:
     print()
 
 
+def reverse_linked_list_using_stack(head: Node | None = None) -> Node:
+    # store the elements in the stack one by one
+    # pop the elements from the stack and link it one by one
+    # finally make the next of the last item/node None
+    stack, temp = [], head
+
+    while temp:
+        stack.append(temp)
+        temp = temp.next
+
+    head = temp = stack.pop()
+
+    while len(stack) > 0:
+        temp.next = stack.pop()
+        temp = temp.next
+
+    temp.next = None
+
+    return head
+
+
 if __name__ == "__main__":
     head = Node(1)
     head.next = Node(2)
@@ -42,4 +63,7 @@ if __name__ == "__main__":
 
     head = prev_node  # finally change the head node
 
+    print_values(head)
+
+    head = reverse_linked_list_using_stack(head)
     print_values(head)
