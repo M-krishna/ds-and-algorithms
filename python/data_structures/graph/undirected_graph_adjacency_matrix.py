@@ -11,9 +11,7 @@ class Graph:
         self.adjacency_matrix = self.create_adjacency_matrix(vertices)
 
     def create_adjacency_matrix(self, vertices: int):
-        matrix = []
-        for i in range(0, vertices):
-            matrix.append([0 for i in range(0, vertices)])
+        matrix = [[0 for _ in range(0, vertices)] for _ in range(vertices)]
         return matrix
 
     def add_edge(self, i, j: int):
