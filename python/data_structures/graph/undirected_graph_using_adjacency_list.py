@@ -39,6 +39,7 @@ class Graph:
             print()
 
     def bfs(self, index: int) -> None:
+        print(f"BFS for node {index}")
         visited_array = [False] * len(self.array)
         queue = deque()
 
@@ -47,7 +48,7 @@ class Graph:
 
         while len(queue) != 0:
             index = queue.popleft()
-            print(f"index: {index}")
+            print(f"BFS: {index}")
             child_node = self.array[index]
 
             while child_node is not None:
@@ -56,18 +57,42 @@ class Graph:
                     visited_array[child_node.data] = True
                 child_node = child_node.next
 
+    def dfs(self, index: int) -> None:
+        print(f"DFS for {index}")
+        visited_array = [False] * len(self.array)
+        stack = deque()
+
+        stack.append(index)
+        visited_array[index] = True
+
+        while len(stack) != 0:
+            index = stack.pop()
+            print(f"index: {index}")
+            child_node = self.array[index]
+
+            while child_node is not None:
+                if not visited_array[child_node.data]:
+                    stack.append(child_node.data)
+                    visited_array[child_node.data] = True
+                child_node = child_node.next
+
     def __repr__(self) -> str:
         return f"{self.array}"
 
 
 if __name__ == "__main__":
-    graph = Graph(5)
+    graph = Graph(7)
     print(graph)
     graph.add_edge(0, 1)
     graph.add_edge(0, 2)
-    graph.add_edge(0, 3)
-    graph.add_edge(4, 2)
-    graph.add_edge(4, 0)
+    graph.add_edge(1, 3)
+    graph.add_edge(2, 4)
+    graph.add_edge(3, 5)
+    graph.add_edge(4, 5)
+    graph.add_edge(4, 6)
     graph.print_values()
     graph.bfs(4)
     graph.bfs(0)
+    graph.bfs(3)
+    graph.bfs(2)
+    graph.dfs(0)
