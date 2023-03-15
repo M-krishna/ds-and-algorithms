@@ -33,6 +33,8 @@ from __future__ import annotations
 
 class Solution:
     def twoSum(self, numbers: list[int], target: int) -> list[int]:
+        # Time complexity: O(n)
+        # Space complexity: O(1)
         left, right = 0, len(numbers) - 1
 
         while left < right:
