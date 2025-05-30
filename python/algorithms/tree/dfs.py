@@ -38,7 +38,7 @@ def inorder_rec(root: Node):
     print(root.data, end=" ")
     inorder_rec(root.right)
 
-
+# Iterative version of Inorder traversal
 def inorder_iter(root: Node):
     stack: List[Node] = []
     curr_node: Node = root
@@ -54,6 +54,31 @@ def inorder_iter(root: Node):
 
         curr_node = curr_node.right
 
+# Recursive version of Preorder traversal
+def preorder_rec(root: Node):
+    if root is None: return
+
+    print(root.data, end=" ")
+    preorder_rec(root.left)
+    preorder_rec(root.right)
+
+# Iterative version of Preorder traversal
+def preorder_iter(root: Node):
+    if root is None: return
+
+    stack: List[Node] = []
+    stack.append(root)
+
+    while stack:
+        curr_node: Node = stack.pop()
+        print(curr_node.data, end=" ")
+
+        if curr_node.right:
+            stack.append(curr_node.right)
+
+        if curr_node.left:
+            stack.append(curr_node.left)
+    
 
 if __name__ == "__main__":
     root = Node(1)
@@ -67,3 +92,7 @@ if __name__ == "__main__":
     inorder_rec(root)
     print()
     inorder_iter(root)
+    print()
+    preorder_rec(root)
+    print()
+    preorder_iter(root)
