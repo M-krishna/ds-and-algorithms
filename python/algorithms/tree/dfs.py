@@ -79,6 +79,61 @@ def preorder_iter(root: Node):
         if curr_node.left:
             stack.append(curr_node.left)
     
+# Recursive version of Postorder traversal
+def postorder_rec(root: Node):
+    if root is None: return
+
+    postorder_rec(root.left)
+    postorder_rec(root.right)
+    print(root.data, end=" ")
+
+# Iterative version of Postorder traversal
+def postorder_iter1(root: Node):
+    if root is None: return
+
+    stack1: List[Node] = []
+    stack2: List[Node] = []
+
+    stack1.append(root)
+    while len(stack1) != 0:
+        curr_node = stack1.pop()
+        stack2.append(curr_node)
+
+        if curr_node.left:
+            stack1.append(curr_node.left)
+        
+        if curr_node.right:
+            stack1.append(curr_node.right)
+    
+    while len(stack2) != 0:
+        curr_node = stack2.pop()
+        print(curr_node.data, end=" ")
+
+# Iterative version of Postorder traversal 2
+def postorder_iter2(root: Node):
+    if root is None: return
+
+    stack: List[Node] = []
+    lastVisitedNode: Node = None
+
+    while True:
+        curr_node: Node = root
+        while curr_node is not None:
+            stack.append(curr_node)
+            curr_node = curr_node.left
+
+        if not stack:
+            break
+
+        curr_node = stack[-1]
+        if curr_node.right is None or curr_node.right == lastVisitedNode:
+            print(curr_node.data, end=" ")
+            lastVisitedNode = stack.pop()
+            curr_node = None
+        else:
+            curr_node = curr_node.right
+
+
 
 if __name__ == "__main__":
     root = Node(1)
@@ -96,3 +151,9 @@ if __name__ == "__main__":
     preorder_rec(root)
     print()
     preorder_iter(root)
+    print()
+    postorder_rec(root)
+    print()
+    postorder_iter1(root)
+    print()
+    postorder_iter2(root)
